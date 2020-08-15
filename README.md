@@ -1,4 +1,4 @@
-# societymanagement
+# societymanagement mobile app
 
 A new Flutter project.
 
