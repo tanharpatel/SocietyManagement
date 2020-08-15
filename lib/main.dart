@@ -1,4 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:societymanagement/Screens/Login.dart';
+import 'package:societymanagement/Screens/SignUp.dart';
+import 'package:societymanagement/Screens/SocietyReg.dart';
 
 void main() => runApp(
   MaterialApp(
@@ -6,17 +12,45 @@ void main() => runApp(
     initialRoute: "/",
     routes: {
       '/': (context) => SplashScreen(),
+      Login.id: (context) => Login(),
+      SignUp.id: (context) => SignUp(),
+      SocietyReg.id: (context) => SocietyReg(),
     }
   )
 );
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   static final String id = "Splash Screen";
 
   @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    Timer(Duration(seconds: 4), () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));});
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text("Welcome to Society Management")),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset("assets/logo.png", height: 200,),
+          SizedBox(height: 30,),
+          Center(child: Text("App Name", style: TextStyle(color: Colors.blueAccent[700], fontSize: 25, fontWeight: FontWeight.bold),)),
+          SizedBox(height: 3,),
+          Center(child: Text("App tagline", style: TextStyle(color: Colors.blueAccent[700], fontSize: 25, fontWeight: FontWeight.bold),)),
+          SizedBox(height: 50,),
+          SpinKitRipple(color: Colors.blueAccent[700], size: 60),
+        ],
+      ),
     );
   }
 }
