@@ -56,12 +56,12 @@ class _SocietyRegState extends State<SocietyReg> {
               Center(child: Text("Create an account at  ", style: TextStyle(color: Colors.grey),)),
               SizedBox(height: 60,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(societyFN);},
                 child: kTextField("Society Name", Icon(Icons.home), societyFN, society),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(secrataryFN);},
                 child: kTextField("Secretary Name", Icon(Icons.person), secrataryFN, secratary),
               ),
               SizedBox(height: 20,),
@@ -71,17 +71,17 @@ class _SocietyRegState extends State<SocietyReg> {
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(otpFN);},
                 child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, otp),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(emailFN);},
                 child: kTextField("E-Mail ID", Icon(Icons.email), emailFN, email),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(addressFN);},
                 child: kTextField("Address", Icon(Icons.location_on), addressFN, address),
               ),
               SizedBox(height: 25,),

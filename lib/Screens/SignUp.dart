@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
               Center(child: Text("Create an account at  ", style: TextStyle(color: Colors.grey),)),
               SizedBox(height: 60,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(nameFN);},
                 child: kTextField("Full Name", Icon(Icons.person), nameFN, name),
               ),
               SizedBox(height: 20,),
@@ -65,21 +65,21 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(otpFN);},
                 child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, otp),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(flatFN);},
                 child: kTextField("Flat Number", Icon(Icons.home), flatFN, flat),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
+                onTap: () {FocusScope.of(context).requestFocus(soccodeFN);},
                 child: kTextField("Society Code", Icon(Icons.lock), soccodeFN, soccode),
               ),
               SizedBox(height: 25,),
-              kRaisedButton(100, "CREATE", () {}),
+              kRaisedButton(150, "CREATE", () {}),
               SizedBox(height: 30,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

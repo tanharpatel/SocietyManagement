@@ -12,8 +12,6 @@ Widget kTextField (String labelText, Icon prefixIcon, FocusNode focusNode, Strin
       style: TextStyle(color: Colors.blue),
       decoration: InputDecoration(
         focusColor: Colors.blue,
-        fillColor: Colors.white,
-        filled: true,
         labelText: labelText,
         labelStyle: TextStyle(color: focusNode.hasFocus ? Colors.blue : Colors.grey),
         prefixIcon: prefixIcon,
