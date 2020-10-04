@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:societymanagement/Components/CustomWidgets.dart';
+import 'package:societymanagement/Components/RaisedBtn.dart';
+import 'package:societymanagement/Components/TextField.dart';
+import 'package:societymanagement/Screens/Dashboard.dart';
 import 'package:societymanagement/Screens/SignUp.dart';
 import 'package:societymanagement/Screens/SocietyReg.dart';
+import 'package:societymanagement/Services/auth.dart';
 
 class Login extends StatefulWidget {
   static final String id = "Login";
@@ -12,7 +16,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   FocusNode phoneFN, otpFN;
-  String phone, otp;
+  String phone, otp, verificationID;
+  bool codeSent = false;
 
   @override
   void initState() {
@@ -46,15 +51,15 @@ class _LoginState extends State<Login> {
               SizedBox(height: 60,),
               GestureDetector(
                 onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, phone),
+                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, TextInputType.phone, (value){phone = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {FocusScope.of(context).requestFocus(otpFN);},
-                child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, otp),
+                child: codeSent ? kTextField("OTP", Icon(Icons.vpn_key), otpFN, TextInputType.number, (value){otp = value;}) : Container(),
               ),
               SizedBox(height: 25,),
-              kRaisedButton(150, "LOG IN", () {}),
+              kRaisedButton(150, codeSent ? "LOG IN" : "VERIFY", () {codeSent ? Auth().signIn(otp, verificationID, context) : verify(phone);}),
               SizedBox(height: 40,),
               Center(child: Text("Society not registered??", style: TextStyle(color: Colors.grey),)),
               SizedBox(height: 5,),
@@ -75,6 +80,36 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> verify(phone) async {
+    final PhoneVerificationCompleted verified = (AuthCredential authResult) {
+      Auth().signIn(otp, verificationID, context);
+    };
+
+    final PhoneVerificationFailed failed = (FirebaseAuthException authFailed) {
+      print("${authFailed.message}");
+    };
+
+    final PhoneCodeSent smsSent = (String verID, [int forceResend]) {
+      setState(() {
+        verificationID = verID;
+        codeSent = true;
+      });
+    };
+
+    final PhoneCodeAutoRetrievalTimeout autoTimeout = (String verID) {
+      verificationID = verID;
+    };
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: verified,
+      verificationFailed: failed,
+      codeSent: smsSent,
+      timeout: Duration(seconds: 5),
+      codeAutoRetrievalTimeout: autoTimeout,
     );
   }
 }
