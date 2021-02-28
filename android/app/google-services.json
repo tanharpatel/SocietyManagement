@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "101249639817",
+    "firebase_url": "https://hellosociety-z1429.firebaseio.com",
+    "project_id": "hellosociety-z1429",
+    "storage_bucket": "hellosociety-z1429.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101249639817:android:a67fe373fdf65df6b9ed58",
+        "android_client_info": {
+          "package_name": "com.tanharpatel.societymanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101249639817-or7haki6lge3dafn0rjebjp198u7d2f9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tanharpatel.societymanagement",
+            "certificate_hash": "ca4c9d729e412aa5ea0a8c7bb6cc496ebbb81cb2"
+          }
+        },
+        {
+          "client_id": "101249639817-3s6ggacfc3vpfveu6dpnkgerpcqbved0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC8mAVXlRTCsmppAEdVF_HzBIDYnBeGnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101249639817-3s6ggacfc3vpfveu6dpnkgerpcqbved0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

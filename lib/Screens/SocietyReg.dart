@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:societymanagement/Components/CustomWidgets.dart';
+import 'package:societymanagement/Components/RaisedBtn.dart';
+import 'package:societymanagement/Components/TextField.dart';
 
 class SocietyReg extends StatefulWidget {
   static final String id = "Society Register";
@@ -56,33 +57,33 @@ class _SocietyRegState extends State<SocietyReg> {
               Center(child: Text("Create an account at  ", style: TextStyle(color: Colors.grey),)),
               SizedBox(height: 60,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Society Name", Icon(Icons.home), societyFN, society),
+                onTap: () {FocusScope.of(context).requestFocus(societyFN);},
+                child: kTextField("Society Name", Icon(Icons.home), societyFN, TextInputType.text, (value){society = value;}),
+              ),
+              SizedBox(height: 20,),
+              GestureDetector(
+                onTap: () {FocusScope.of(context).requestFocus(secrataryFN);},
+                child: kTextField("Secretary Name", Icon(Icons.person), secrataryFN, TextInputType.text, (value){secratary = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Secretary Name", Icon(Icons.person), secrataryFN, secratary),
+                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, TextInputType.phone, (value){phone = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, phone),
+                onTap: () {FocusScope.of(context).requestFocus(otpFN);},
+                child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, TextInputType.number, (value){otp = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, otp),
+                onTap: () {FocusScope.of(context).requestFocus(emailFN);},
+                child: kTextField("E-Mail ID", Icon(Icons.email), emailFN, TextInputType.emailAddress, (value){email = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("E-Mail ID", Icon(Icons.email), emailFN, email),
-              ),
-              SizedBox(height: 20,),
-              GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Address", Icon(Icons.location_on), addressFN, address),
+                onTap: () {FocusScope.of(context).requestFocus(addressFN);},
+                child: kTextField("Address", Icon(Icons.location_on), addressFN, TextInputType.text, (value){address = value;}),
               ),
               SizedBox(height: 25,),
               kRaisedButton(200, "REGISTER", () {}),

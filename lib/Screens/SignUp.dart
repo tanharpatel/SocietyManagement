@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:societymanagement/Components/CustomWidgets.dart';
+import 'package:societymanagement/Components/RaisedBtn.dart';
+import 'package:societymanagement/Components/TextField.dart';
 import 'package:societymanagement/Screens/Login.dart';
 
 class SignUp extends StatefulWidget {
@@ -55,31 +56,31 @@ class _SignUpState extends State<SignUp> {
               Center(child: Text("Create an account at  ", style: TextStyle(color: Colors.grey),)),
               SizedBox(height: 60,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Full Name", Icon(Icons.person), nameFN, name),
+                onTap: () {FocusScope.of(context).requestFocus(nameFN);},
+                child: kTextField("Full Name", Icon(Icons.person), nameFN, TextInputType.text, (value){name = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, phone),
+                child: kTextField("Phone Number", Icon(Icons.phone_android), phoneFN, TextInputType.phone, (value){phone = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, otp),
+                onTap: () {FocusScope.of(context).requestFocus(otpFN);},
+                child: kTextField("OTP", Icon(Icons.vpn_key), otpFN, TextInputType.number, (value){otp = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Flat Number", Icon(Icons.home), flatFN, flat),
+                onTap: () {FocusScope.of(context).requestFocus(flatFN);},
+                child: kTextField("Flat Number", Icon(Icons.home), flatFN, TextInputType.text, (value){flat = value;}),
               ),
               SizedBox(height: 20,),
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(phoneFN);},
-                child: kTextField("Society Code", Icon(Icons.lock), soccodeFN, soccode),
+                onTap: () {FocusScope.of(context).requestFocus(soccodeFN);},
+                child: kTextField("Society Code", Icon(Icons.lock), soccodeFN, TextInputType.number, (value){soccode = value;}),
               ),
               SizedBox(height: 25,),
-              kRaisedButton(100, "CREATE", () {}),
+              kRaisedButton(150, "CREATE", () {}),
               SizedBox(height: 30,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
