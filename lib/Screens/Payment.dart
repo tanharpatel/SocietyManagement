@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:societymanagement/Components/CustomAppBar.dart';
 import 'package:societymanagement/Components/RaisedBtn.dart';
 import 'package:societymanagement/Components/TextField.dart';
+import 'package:societymanagement/Utils/GetDetails.dart';
 
 class Payment extends StatefulWidget {
+  static final String id = "Payment";
   @override
   _PaymentState createState() => _PaymentState();
 }
 
 class _PaymentState extends State<Payment> {
-  double amount;
+  int amount;
   FocusNode paymentFN = FocusNode();
   Razorpay _razorpay;
 
@@ -26,13 +29,20 @@ class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(56),
+          child: appBar(context, "Payment"),
+        ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              kTextField("Enter Amount", Icon(Icons.payment), paymentFN, TextInputType.number, (value){amount = value;}),
-              kRaisedButton(MediaQuery.of(context).size.width*0.3, "Pay Now", (){proceedPayment();}),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              children: [
+                kTextField(context, "Enter Amount to Pay...", Icon(Icons.monetization_on), paymentFN, null, TextInputType.number, (value){amount = int.parse(value);}, TextInputAction.done),
+                kRaisedButton(MediaQuery.of(context).size.width*0.3, "Pay Now", (){proceedPayment();}),
+              ],
+            ),
           ),
         ),
       ),
@@ -42,10 +52,10 @@ class _PaymentState extends State<Payment> {
   void proceedPayment() async {
     var options = {
       'key': 'rzp_test_KmWY8V0p2QgPJQ',
-      'amount': amount ?? 0,
-      'name': 'Hello Society',
+      'amount': amount*100 ?? 0,
+      'name': secretary,
       'description': 'Pay Soceity Funds',
-      'prefill': {'contact': '', 'email': ''},
+      'prefill': {'contact': phoneno, 'email': "$society@gmail.com"},
       'external': {
         'wallets': ['paytm']
       }
@@ -70,55 +80,3 @@ class _PaymentState extends State<Payment> {
     Fluttertoast.showToast(msg: "EXTERNAL_WALLET: " + response.walletName);
   }
 }
-
-// void _handlePaymentSuccess(PaymentSuccessResponse response)  async {
-//     setState(() {
-//       ci = true;
-//     });
-//     await UpdatePayment();
-//     Navigator.pop(context);
-//     Fluttertoast.showToast(
-//         msg: "SUCCESS: " + response.paymentId,);
-
-//   }
-
-
-
-//   Future<String> getData(int index) async {
-//     QuerySnapshot querySnapshot = await _firestore.collection("Payments").getDocuments();
-//    // print(querySnapshot.documents[index].documentID);
-//     return querySnapshot.documents[index].documentID;
-
-//   }
-
-
-//   Future UpdatePayment() async{
-//      String s = await getData(widget.accountindex);
-//      print(s);
-//     await _firestore.runTransaction((transaction)async{
-//       DocumentReference documentReference = _firestore.collection('Payments')
-//           .document(s);
-//       DocumentSnapshot snapshot = await transaction.get(documentReference);
-//       int oldamount = snapshot.data['duePayment'];
-//       int  diff = oldamount - amount;
-
-//       await transaction.update(documentReference,{
-//         'duePayment' : diff,
-
-//       });
-
-//     });
-
-//   }
-
-
-///////////////////////////////////
-  // Future<int> getData(int index) async {
-  //   QuerySnapshot querySnapshot = await _firestore.collection("Payments").getDocuments();
-  //   /*This Code is just for problem statement for a single user without registration module Thats why the Hash of the email is hardcoded , With Registration Module The email can be taken
-  //   * dynamically for all the user available in the database */
-  //   print("DOremon");
-  //   print(querySnapshot.documents[index].data["duePayment"]);
-  //  return querySnapshot.documents[index].data["duePayment"];
-    
-  // }
